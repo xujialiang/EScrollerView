@@ -23,6 +23,11 @@
     int currentPageIndex;
     UILabel *noteTitle;
 }
+
+//自动滚动
+@property (nonatomic,assign) BOOL autoScroll;
+@property (nonatomic,assign) NSInteger autoScrollDuration;//默认滚动时间  3秒
+
 @property(nonatomic,retain)id<EScrollerViewDelegate> delegate;
 -(id)initWithFrameRect:(CGRect)rect ImageArray:(NSArray *)imgArr TitleArray:(NSArray *)titArr;
 @end

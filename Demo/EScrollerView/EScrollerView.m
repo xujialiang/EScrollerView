@@ -138,4 +138,30 @@
     }
 }
 
+
+-(void)setAutoScroll:(BOOL)autoScroll{
+    _autoScroll = autoScroll;
+    [self autoScrollView];
+}
+
+-(void)autoScrollView{
+    if (self.autoScroll) {
+        NSInteger duration = self.autoScrollDuration;
+        if (duration==0) {
+            duration=3;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)( duration* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                if ((currentPageIndex+1)>(imageArray.count-2)) {
+                    currentPageIndex = 0;
+                }
+                
+                [scrollView scrollRectToVisible:CGRectMake((currentPageIndex+1)*viewSize.size.width, 0, viewSize.size.width, viewSize.size.height) animated:YES];
+                [self scrollViewDidScroll:scrollView];
+                [self autoScrollView];
+            });
+        });
+    }
+}
+
 @end

@@ -22,6 +22,7 @@
                                                           ImageArray:[NSArray arrayWithObjects:@"1.jpg",@"2.jpg",@"3.jpg", nil]
                                                           TitleArray:[NSArray arrayWithObjects:@"11",@"22",@"33", nil]];
     scroller.delegate=self;
+    scroller.autoScroll=YES;
     [self.view addSubview:scroller];
     [scroller release];
     
